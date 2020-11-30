@@ -1,4 +1,4 @@
-#nginx1.16.1 with http_sub_module & open jdk8u212
+#nginx1.16.1 with http_sub_module
 FROM centos:7
 #设置时区
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
