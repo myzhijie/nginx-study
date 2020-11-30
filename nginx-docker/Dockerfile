@@ -15,6 +15,9 @@ RUN wget http://nginx.org/download/nginx-1.16.1.tar.gz
 RUN tar -xvf nginx-*.tar.gz && rm -rf nginx-*.tar.gz
 RUN cd nginx-* && ./configure --with-http_stub_status_module --with-http_sub_module --with-http_ssl_module --with-ld-opt=-Wl,-rpath,/usr/local/LuaJIT/lib --add-module=/opt/ngx_devel_kit-0.3.0 --add-module=/opt/lua-nginx-module-0.10.13 && make -j2 && make install
 RUN rm -rf nginx-*
+#修改nginx默认配置文件
+RUN mv /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx.conf.bak
+COPY nginx.conf /usr/local/nginx/conf/
 #重定Nginx日志到垃圾桶防止日志爆掉
 RUN mkdir /var/log/nginx
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
